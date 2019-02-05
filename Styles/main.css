@@ -35,6 +35,10 @@
     color: #aa2b27;
 }
 
-.alert-link :hover {
-    color: #e0201a !important;
+.close {
+    color: #ffffff;
+}
+
+.modal-content {
+    background-color: #343A40;
 }

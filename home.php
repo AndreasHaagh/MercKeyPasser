@@ -15,11 +15,31 @@
     </div>
     <div class="container login-box">
         <form action="#" method="post">
-            <input type="text" name="Username" class="input-textfield form-control bg-dark border-dark text-white" placeholder="Enter username">
+            <input type="text" name="Username" class="input-textfield form-control bg-dark border-dark text-white" autocomplete="off" placeholder="Enter username">
             <input type="password" class="input-textfield form-control bg-dark border-dark text-white" name="Password" placeholder="Enter password">
             <input type="submit" class="btn btn-dark" name="Submit" value="Log in">
-            <p id="Sign-up-text">Don't have an account? <a href="#" class="alert-link">Click here</a> to create one</p>
+            <p id="Sign-up-text">Don't have an account? <a href="#" class="alert-link" data-toggle="modal" data-target="#Sign-up-modal">Click here</a> to create one</p>
         </form>
+    </div>
+
+    <div class="modal modal-dark" id="Sign-up-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sign up</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="./sql/signup.php" method="post">
+                        <input type="text" class="input-textfield form-control" autocomplete="off" placeholder="Enter username" name="Username">
+                        <input type="password" class="input-textfield form-control" placeholder="Enter password" name="Password">
+                        <input type="submit" class="btn btn-primary" name="Submit" value="Sign up">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
