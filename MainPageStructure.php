@@ -2,7 +2,7 @@
 <html lang ="en">
 <head>
 	<title>MercKeyPasser</title>
-
+  <?php session_start(); ?>
 	<meta charset = "utf-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +25,7 @@
 
   <div class = "container-fluid"> 
     <div class = "jumbotron">
-    	<h1>MercKeyPasser</h1>
+    	<h1>MercKeyPasser <?php echo " - Hello ". $_SESSION["Username"] .""; ?></h1>
     </div>
   </div>
 
@@ -51,7 +51,10 @@
 
         <!-- Log Out button -->
   	  <div class="col-sm-2">
-        <button type="button" class="btn btn-info">LogOut</button>
+        <form action="./sql/logout.php" method="post">
+          <input class="btn btn-info" type="submit" value="Log Out">
+        </form>
+        <!-- <button type="button" class="btn btn-info">LogOut</button> -->
       </div>
   </div>
 

@@ -14,12 +14,21 @@
         <h1>MercKeyPasser</h1>
     </div>
     <div class="container login-box">
-        <form action="#" method="post">
+        <form action="./sql/login.php" method="post">
             <input type="text" name="Username" class="input-textfield form-control bg-dark border-dark text-white" autocomplete="off" placeholder="Enter username">
             <input type="password" class="input-textfield form-control bg-dark border-dark text-white" name="Password" placeholder="Enter password">
             <input type="submit" class="btn btn-dark" name="Submit" value="Log in">
             <p id="Sign-up-text">Don't have an account? <a href="#" class="alert-link" data-toggle="modal" data-target="#Sign-up-modal">Click here</a> to create one</p>
         </form>
+    </div>
+    <div class="container error-box">
+        <p class="errorMsg">
+            <?php 
+                if (isset($_GET["errMsg"])) {
+                    echo str_replace("_", " ", $_GET["errMsg"]);
+                }
+            ?>
+        </p>
     </div>
 
     <div class="modal modal-dark" id="Sign-up-modal" tabindex="-1" role="dialog" aria-hidden="true">

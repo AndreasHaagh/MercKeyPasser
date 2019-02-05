@@ -42,3 +42,11 @@
 .modal-content {
     background-color: #343A40;
 }
+
+.error-box {
+    text-align: center;
+}
+
+.errorMsg {
+    color: #fc2f28;
+}

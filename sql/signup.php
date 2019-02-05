@@ -5,7 +5,7 @@ if (!empty($_POST["Username"]) && !empty($_POST["Password"])) {
     $username = mysqli_real_escape_string($conn, $_POST["Username"]);
     $password = mysqli_real_escape_string($conn, $_POST["Password"]);
 } else {
-    header("location: ../home.php?errMsg=No username or password");
+    header("location: ../home.php?errMsg=Sign_up_Error_-_No_username_or_password!");
     die();
 }
 
