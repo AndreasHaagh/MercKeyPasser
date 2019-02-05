@@ -6,6 +6,7 @@ if (!empty($_POST["Username"]) && !empty($_POST["Password"])) {
     $password = mysqli_real_escape_string($conn, $_POST["Password"]);
 } else {
     header("location: ../home.php?errMsg=No username or password");
+    die();
 }
 
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
