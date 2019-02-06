@@ -18,6 +18,14 @@ if ($result = $conn->query("SELECT * FROM Users WHERE name ='". $username ."'"))
     }
 
     while ($row = $result->fetch_assoc()) {
+        if ($row['Password'] == "Password1") {
+            $password_hashed = password_hash($row["Password"], PASSWORD_DEFAULT);
+            $sql = "UPDATE Users SET Password = '". $password_hashed ."'";
+            if ($conn->query($sql)) {
+                echo "hased password";
+            }
+        }
+
         if (password_verify($password, $row["Password"])) {
             session_start();
             $_SESSION["Id"] = $row["Id"];
