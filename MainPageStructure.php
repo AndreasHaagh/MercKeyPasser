@@ -17,15 +17,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <!-- Background color for main page and create nodal -->
   <style>
     body {
       background-color: #343A40;
     }
-
     .modal-header, .modal-body {
       background-color: #343A40;
       color: white;
 
+<<<<<<< HEAD
+    }    
+=======
     }
 
     .table {
@@ -33,6 +36,7 @@
       color: white;
     }
     
+>>>>>>> d679422468f0c5992a2395e6ee55b945f59bdb66
   </style>
 </head>
 <body >
