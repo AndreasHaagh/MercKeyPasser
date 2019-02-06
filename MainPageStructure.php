@@ -2,7 +2,10 @@
 <html lang ="en">
 <head>
 	<title>MercKeyPasser</title>
-  <?php session_start(); ?>
+  <?php
+    require './sql/connection.php';
+    session_start(); 
+  ?>
 	<meta charset = "utf-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +26,17 @@
       background-color: #343A40;
       color: white;
 
+<<<<<<< HEAD
     }    
+=======
+    }
+
+    .table {
+      margin-top: 25px;
+      color: white;
+    }
+    
+>>>>>>> d679422468f0c5992a2395e6ee55b945f59bdb66
   </style>
 </head>
 <body >
@@ -66,6 +79,50 @@
   <div class = "row">
   	  <div class="col-sm-2"></div>
   	  <div class="col-sm-8">
+        <table class="table">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Username</th>
+            <th scope="col">Password</th>
+            <th scope="col">Source</th>
+            <th scope="col">Eidt / Delete</th>
+          </tr>
+          <?php
+            $userId = $_SESSION["Id"];
+            $sql = "SELECT * FROM passwordKeys WHERE UserId = '". $userId ."'";
+
+            if ($result = $conn->query($sql)) {
+              $row_count = $result->num_rows;
+
+              if ($row_count <= 0) {
+                echo '<tr><td>No keys yet. press the create button to create some</td></tr>';
+              } else {
+                $index = 1;
+                $rows = [];
+                while ($row = $result->fetch_assoc()) {
+                  $rows[] = $row;
+                }
+
+                foreach ($rows as $item) {
+                  echo '
+                  <tr>
+                    <th>'.$index.'</th>
+                    <td>'.$item["Title"].'</td>
+                    <td>'.$item["Username"].'</td>
+                    <td>'.$item["Password"].'</td>
+                    <td>'.$item["Source"].'</td>
+                    <td>
+                      <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
+                      <button type="button" class="btn btn-light">Delete</button>
+                    </td>
+                  </tr>';
+                  $index++;
+                }
+              }
+            }
+          ?>
+        </table>
   	  </div>
   	  <div class="col-sm-2"></div>
   </div>
