@@ -17,8 +17,14 @@
   <style>
     body {
       background-color: #343A40;
-      /*background-image: url("img/keyP3.jpg");*/
     }
+
+    .modal-header, .modal-body {
+      background-color: #343A40;
+      color: white;
+
+    }
+    
   </style>
 </head>
 <body >
@@ -61,12 +67,11 @@
   <div class = "row">
   	  <div class="col-sm-2"></div>
   	  <div class="col-sm-8">
-  	   <img class="img-responsive" src="img/keyP2.jpg" > 
   	  </div>
   	  <div class="col-sm-2"></div>
   </div>
 
-  <!-- The Modal -->
+  <!-- The Modal Form Create new record-->
   <div class="modal" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -74,35 +79,35 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Create new record</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
-        <div class="modal-body">
-          <form>
-
+        <div class="modal-body modal-dark">
+          <form action="./sql/create.php" method="post">
+ 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Title</span>
               </div>
-              <input type="text" class="form-control" placeholder="Title">
+              <input type="text" class="form-control" name= "title" placeholder="Title">
             </div>
 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Username</span>
               </div>
-              <input type="text" class="form-control" placeholder="Username">
+              <input type="text" class="form-control" name="username" placeholder="Username">
             </div>
 
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Password</span>
               </div>
-              <input type="text" class="form-control" placeholder="Password">
+              <input type="text" class="form-control" name="password" placeholder="Password">
               <div class="input-group-append">
                 
-                  <button type="button" class="btn btn-info">Create</button>
+                  <button id="generateBtn" type="button" class="btn btn-info" action="">Generate</button>
               </div>
             </div>
 
@@ -110,14 +115,11 @@
               <div class="input-group-prepend">
                 <span class="input-group-text">Url:</span>
               </div>
-              <input type="text" class="form-control" placeholder="Source">
+              <input type="text" class="form-control" name="source" placeholder="Source">
             </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary" name="save">Save</button>
           </form> 
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
