@@ -35,6 +35,18 @@
     color: #aa2b27;
 }
 
-.alert-link :hover {
-    color: #e0201a !important;
+.close {
+    color: #ffffff;
+}
+
+.modal-content {
+    background-color: #343A40;
+}
+
+.error-box {
+    text-align: center;
+}
+
+.errorMsg {
+    color: #fc2f28;
 }
