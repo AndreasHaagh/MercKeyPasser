@@ -19,7 +19,6 @@
     body {
       background-color: #343A40;
     }
-
     .modal-header, .modal-body {
       background-color: #343A40;
       color: white;
