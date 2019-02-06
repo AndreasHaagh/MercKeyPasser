@@ -26,17 +26,13 @@
       background-color: #343A40;
       color: white;
 
-<<<<<<< HEAD
-    }    
-=======
     }
 
     .table {
       margin-top: 25px;
       color: white;
     }
-    
->>>>>>> d679422468f0c5992a2395e6ee55b945f59bdb66
+
   </style>
 </head>
 <body >
