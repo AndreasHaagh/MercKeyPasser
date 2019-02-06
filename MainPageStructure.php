@@ -54,12 +54,7 @@
 
     <!-- Main Button Group -->
   	  <div class="col-sm-8">
-        
-        <!-- Edit and delete buttons Group -->
-  	    <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
-  	    <button type="button" class="btn btn-light">Delete</button>
-
-      	<!-- Button to Open the Modal -->
+        <!-- Button to Open the Modal -->
       	<button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal">Create</button>
   	  </div>
 
@@ -110,7 +105,7 @@
                     <td>'.$item["Source"].'</td>
                     <td>
                       <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
-                      <button type="button" class="btn btn-light">Delete</button>
+                      <button type="button" class="btn btn-light delete-btn" value="'. $item["Id"] .'">Delete</button>
                     </td>
                   </tr>';
                   $index++;
@@ -176,5 +171,19 @@
       </div>
     </div>
   </div>
+
+  <script>
+    $(".delete-btn").click(function() {
+      var approved = confirm("Are you sure you want to delete this?");
+      if (approved == true) {
+        var url = './sql/delete.php';
+        var form = $('<form action="' + url + '" method="post">' +
+                     '  <input type="hidden" name="passwordKeyId"  value="' + this.value + '" />' +
+                     '</form>');
+        $('body').append(form);
+        form.submit();
+      }
+    });
+  </script>
 </body>
 </html>
