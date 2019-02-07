@@ -4,7 +4,13 @@
 	<title>MercKeyPasser</title>
   <?php
     require './sql/connection.php';
-    session_start(); 
+    session_start();
+
+    if (!isset($_SESSION["Username"])) {
+      echo "Should rediect";
+      header("location: ./index.php");
+      die();
+    }
   ?>
 	<meta charset = "utf-8">
 
