@@ -107,7 +107,7 @@
                     <th>'.$index.'</th>
                     <td>'.$item["Title"].'</td>
                     <td>'.$item["Username"].'</td>
-                    <td class="password-field">**********     <button class="btn btn-dark btn-outline-primary show-btn">Show</button></td>
+                    <td class="password-field">**********     <button class="btn btn-dark btn-outline-primary show-btn" value="'. $item["Id"] .'">Show</button></td>
                     <td>'.$item["Source"].'</td>
                     <td>
                       <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
@@ -190,6 +190,40 @@
         form.submit();
       }
     });
+
+    $(document).on('click', '.show-btn', function() {
+      var btn_text = this.innerText;
+      var parrent = this.parentElement;
+      var selectedRow = this.value;
+      var btn = this;
+
+      if (btn_text == "Show") {
+        getPassword(selectedRow, function(password) {
+          btn.innerText = "Hide";
+          var newText = parrent.innerHTML.replace("**********", password);
+          parrent.innerHTML = newText;
+        });
+      } else if (btn_text == "Hide") {
+        getPassword(selectedRow ,function(password) {
+          btn.innerText = "Show";
+          var newText = parrent.innerHTML.replace(password, "**********");
+          parrent.innerHTML = newText;
+        });
+      }
+    });
+
+    function getPassword(selectedRow, callback) {
+      $.ajax({
+        url: "./sql/getPassword.php",
+        type: "get",
+        data: { RowId: selectedRow },
+        dataType: "json",
+        success: function(data) {
+          var value = data.Password;
+          callback(value);
+        }
+      });
+    }
   </script>
 </body>
 </html>
