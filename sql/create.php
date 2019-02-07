@@ -20,30 +20,25 @@ if (isset($_POST['save'])) {
 	if ($_POST['recordId'] != ""){
 
 		//prepare update query template
- 		$sql = "UPDATE passwordkeys SET title = ?, username = ?, password = ?, source = ? WHERE id = '".$_POST['recordId']."'";
- 		$stmt = mysqli_stmt_init($conn);
- 		if (!mysqli_stmt_prepare($stmt, $sql)){
-			header("Location:../MainPageStructure.php?error = sqlerror");
-	 		exit();
- 		} else {
- 			//bind parameters
- 			mysqli_stmt_bind_param($stmt, "ssss", $title, $username, $password, $source); 	}
-
+ 		$sql = "UPDATE passwordkeys SET userID = ?, title = ?, username = ?, password = ?, source = ? WHERE id = '".$_POST['recordId']."'";
+ 		
 	} else {
 
 		//prepare insert query template
 		$sql = "INSERT INTO passwordkeys (userID, title, username, password, source) VALUES (?,?,?,?,?)";	
-		$stmt = mysqli_stmt_init($conn);
+			
 
+	}	
+
+	$stmt = mysqli_stmt_init($conn);
+	
 		if (!mysqli_stmt_prepare($stmt, $sql)) {
 			header("Location: ../MainPageStructure.php?error = sqlerror");
 			exit();
 		} else {
 			//bind parameters
 			mysqli_stmt_bind_param($stmt, "sssss", $id, $title, $username, $password, $source);
-		}		
-	}	
-
+		}	
 	//execute query
 	mysqli_stmt_execute($stmt);
 	//close
