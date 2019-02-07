@@ -6,6 +6,7 @@
     require './sql/connection.php';
     session_start();
 
+    // redirection to index page if user is not set
     if (!isset($_SESSION["Username"])) {
       echo "Should rediect";
       header("location: ./index.php");
@@ -39,7 +40,7 @@
   </style>
 </head>
 <body >
-
+ <!-- title bar section -->
   <div class = "container-fluid"> 
     <div class = "jumbotron">
     	<h1>MercKeyPasser <?php echo " - Hello ". $_SESSION["Username"] .""; ?></h1>
@@ -57,13 +58,7 @@
 
     <!-- Main Button Group -->
   	  <div class="col-sm-8">
-        
-        <!-- Edit and delete buttons Group >
-  	    <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
-  	    <button type="button" class="btn btn-light">Delete</button>
-
-      	<!-- Button to Open the Modal -->
-        <!-- Button to Open the Modal -->
+       <!-- Button to Open the Modal -->
       	<button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal">Create</button>
   	  </div>
 
@@ -72,10 +67,10 @@
         <form action="./sql/logout.php" method="post">
           <input class="btn btn-info" type="submit" value="Log Out">
         </form>
-        <!-- <button type="button" class="btn btn-info">LogOut</button> -->
       </div>
   </div>
 
+  <!-- Main content: fetching records from database into the table for the user -->
   <div class = "row">
   	  <div class="col-sm-2"></div>
   	  <div class="col-sm-8">
@@ -138,7 +133,7 @@
 		          <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
 		        </div>
 
-		        <!-- Modal body -->
+		        <!-- Modal body: user input group-->
 		        <div class="modal-body modal-dark">
 		          <form action="./sql/create.php" method="post">
 		 
@@ -185,6 +180,7 @@
 <script>
 	$(document).ready(function(){
 
+    //setting event for the "edit" buttons
 		$(document).on('click', '.edit_data', function(){
 			var recordId = $(this).attr("id");
 			console.log(recordId);
@@ -211,6 +207,7 @@
   </div>
 
   <script>
+    //setting event for the "delete" buttons
     $(".delete-btn").click(function() {
       var approved = confirm("Are you sure you want to delete this?");
       if (approved == true) {
@@ -223,6 +220,7 @@
       }
     });
 
+    //setting event for the "show" button
     $(document).on('click', '.show-btn', function() {
       var btn_text = this.innerText;
       var parrent = this.parentElement;
@@ -244,6 +242,7 @@
       }
     });
 
+    //function to fetch password after user request
     function getPassword(selectedRow, callback) {
       $.ajax({
         url: "./sql/getPassword.php",
