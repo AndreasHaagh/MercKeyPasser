@@ -114,8 +114,6 @@
                     <td>'.$item["Source"].'</td>
                     <td>
                       <button type="button" class="btn btn-dark btn-outline-primary edit_data" name="edit" value = "Edit" id="'. $item["Id"] .'">Edit</button>
-                      <button type="button" class="btn btn-light">Delete</button>
-                      <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
                       <button type="button" class="btn btn-light delete-btn" value="'. $item["Id"] .'">Delete</button>
                     </td>
                   </tr>';
