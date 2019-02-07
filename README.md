@@ -1,8 +1,22 @@
 # MercKeyPasser
 
-Here is how you get the code enviorment on your pc to work.
+## Description
+
+This is a website where a user can store passwords for other programs or websites. In odrer to use the site the user must create an account on the main page.
+After the user is loged in the user can create password keys that stores the username, password and the place the username and password belongs to. The user can also add a title the these password keys.
+
+After the password keys have been created they will be shown at center of page in a table. The passwords are hidden as a standart. Press show to see it, press hide to 
+hide it again. At the end of each row there is an edit / delete button, which the user can use to either edit the password key or delete it.
+
+work and tested in:
+
+- Google Chorme
+- Mozilla Firefox
+- Microsoft Edge
 
 ## Set up
+
+Here is how you get the code enviorment on your pc to work.
 
 ### First setting up the code repo
 
@@ -35,3 +49,8 @@ If you're in need of some test data in the Database there is a file called "test
 First you need to commit and push the changes to your branch. Then pull the master branch and see it is stil working.
 If it is stil working then merge the master branch and your branch together on your branch.
 Then link to the commit you made in the trello task and move it to the "review" list in trello.
+
+## Upcoming features
+
+- dark / light mode.
+- password generator.
