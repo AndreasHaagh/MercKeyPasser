@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang ="en">
-<head>
+<head>,
 	<title>MercKeyPasser</title>
   <?php
     require './sql/connection.php';
@@ -31,14 +31,11 @@
     .modal-header, .modal-body {
       background-color: #343A40;
       color: white;
-
-    }
-
+  }
     .table {
       margin-top: 25px;
       color: white;
     }
-
   </style>
 </head>
 <body >
@@ -60,6 +57,12 @@
 
     <!-- Main Button Group -->
   	  <div class="col-sm-8">
+        
+        <!-- Edit and delete buttons Group >
+  	    <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
+  	    <button type="button" class="btn btn-light">Delete</button>
+
+      	<!-- Button to Open the Modal -->
         <!-- Button to Open the Modal -->
       	<button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal">Create</button>
   	  </div>
@@ -83,7 +86,7 @@
             <th scope="col">Username</th>
             <th scope="col">Password</th>
             <th scope="col">Source</th>
-            <th scope="col">Eidt / Delete</th>
+            <th scope="col">Edit / Delete</th>
           </tr>
           <?php
             $userId = $_SESSION["Id"];
@@ -110,7 +113,7 @@
                     <td class="password-field">**********     <button class="btn btn-dark btn-outline-primary show-btn" value="'. $item["Id"] .'">Show</button></td>
                     <td>'.$item["Source"].'</td>
                     <td>
-                      <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
+                      <button type="button" class="btn btn-dark btn-outline-primary edit_data" name="edit" value = "Edit" id="'. $item["Id"] .'">Edit</button>
                       <button type="button" class="btn btn-light delete-btn" value="'. $item["Id"] .'">Delete</button>
                     </td>
                   </tr>';
@@ -125,57 +128,86 @@
   </div>
 
   <!-- The Modal Form Create new record-->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
+	<div class="modal" id="myModal">
+	    <div class="modal-dialog">
+	     	 <div class="modal-content">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Create new record</h4>
-          <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
-        </div>
+		        <!-- Modal Header -->
+		        <div class="modal-header">
+		          <h4 class="modal-title" >Create</h4>
+		          <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
+		        </div>
 
-        <!-- Modal body -->
-        <div class="modal-body modal-dark">
-          <form action="./sql/create.php" method="post">
- 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Title</span>
-              </div>
-              <input type="text" class="form-control" name= "title" placeholder="Title">
-            </div>
+		        <!-- Modal body -->
+		        <div class="modal-body modal-dark">
+		          <form action="./sql/create.php" method="post">
+		 
+		            <div class="input-group mb-3">
+		              <div class="input-group-prepend">
+		                <span class="input-group-text">Title</span>
+		              </div>
+		              <input  id = "title" type="text" class="form-control" name= "title" placeholder="Title">
+		            </div>
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Username</span>
-              </div>
-              <input type="text" class="form-control" name="username" placeholder="Username">
-            </div>
+		            <div class="input-group mb-3">
+		              <div class="input-group-prepend">
+		                <span class="input-group-text">Username</span>
+		              </div>
+		              <input id = "username" type="text" class="form-control" name="username" placeholder="Username">
+		            </div>
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Password</span>
-              </div>
-              <input type="text" class="form-control" name="password" placeholder="Password">
-              <div class="input-group-append">
-                
-                  <button id="generateBtn" type="button" class="btn btn-info" action="">Generate</button>
-              </div>
-            </div>
+		            <div class="input-group mb-3">
+		              <div class="input-group-prepend">
+		                <span class="input-group-text">Password</span>
+		              </div>
+		              <input id = "password" type="text" class="form-control" name="password" placeholder="Password">
+		              <div class="input-group-append">
+		                
+		                  <button id="generateBtn" type="button" class="btn btn-info" action="">Generate</button>
+		              </div>
+		            </div>
 
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Url:</span>
-              </div>
-              <input type="text" class="form-control" name="source" placeholder="Source">
-            </div>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary" name="save">Save</button>
-          </form> 
-        </div>
-      </div>
+		            <div class="input-group mb-3">
+		              <div class="input-group-prepend">
+		                <span class="input-group-text">Url:</span>
+		              </div>
+		              <input id="source" type="text" class="form-control" name="source" placeholder="Source">
+		            </div>
+                <input type="hidden" name="recordId" id = "recordId"/>
+		            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		            <button type="submit" class="btn btn-primary" name="save" id="save">Save</button>
+		          </form> 
+		        </div>
+	     	</div>
+	    </div>
     </div>
+
+<script>
+	$(document).ready(function(){
+
+		$(document).on('click', '.edit_data', function(){
+			var recordId = $(this).attr("id");
+			console.log(recordId);
+			$.ajax({
+				url:"/sql/edit.php",
+				method: "POST",
+				data: {recordId: recordId},
+				dataType:"json",
+				success: function(data){
+					$("#title").val(data.Title);
+					$("#username").val(data.Username);
+					$("#password").val(data.Password);
+					$("#source").val(data.Source);
+          $("#recordId").val(data.Id);
+					$("#save").text("Update");
+					$(".modal-title").text("Update the record");
+					$('#myModal').modal('show');
+
+				}
+			});
+		});
+	});
+</script>
   </div>
 
   <script>
