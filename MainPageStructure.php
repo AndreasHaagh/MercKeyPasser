@@ -107,7 +107,7 @@
                     <th>'.$index.'</th>
                     <td>'.$item["Title"].'</td>
                     <td>'.$item["Username"].'</td>
-                    <td>'.$item["Password"].'</td>
+                    <td class="password-field">**********     <button class="btn btn-dark btn-outline-primary show-btn">Show</button></td>
                     <td>'.$item["Source"].'</td>
                     <td>
                       <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
