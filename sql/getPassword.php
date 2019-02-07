@@ -2,15 +2,15 @@
 require 'connection.php';
 session_start();
 
-if (isset($_GET["RowId"]) && isset($_SESSION["Username"])) {
+if (isset($_GET["RowId"]) && isset($_SESSION["Id"])) {
     $rowId = $_GET["RowId"];
-    $username = $_SESSION["Username"];
+    $userid = $_SESSION["Id"];
 } else {
     header("location: ../MainPageStructure.php");
     die();
 }
 
-$sql = "SELECT Password FROM passwordKeys WHERE Id = ". $rowId ." AND Username = '". $username ."'";
+$sql = "SELECT Password FROM passwordKeys WHERE Id = ". $rowId ." AND UserId = '". $userid ."'";
 
 if ($result = $conn->query($sql)) {
     $row_count = $result->num_rows;
@@ -26,5 +26,5 @@ if ($result = $conn->query($sql)) {
         echo $jsonResult;
     }
 } else {
-    // header("location: ../MainPageStructure.php");
+    header("location: ../MainPageStructure.php");
 }
