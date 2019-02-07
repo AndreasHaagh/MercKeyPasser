@@ -57,16 +57,13 @@
 
     <!-- Main Button Group -->
   	  <div class="col-sm-8">
-<<<<<<< HEAD
         
         <!-- Edit and delete buttons Group >
   	    <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
   	    <button type="button" class="btn btn-light">Delete</button>
 
       	<!-- Button to Open the Modal -->
-=======
         <!-- Button to Open the Modal -->
->>>>>>> 8045f9b031b66ff4f81425be8da1dc83d04e32f7
       	<button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal">Create</button>
   	  </div>
 
@@ -116,13 +113,8 @@
                     <td class="password-field">**********     <button class="btn btn-dark btn-outline-primary show-btn" value="'. $item["Id"] .'">Show</button></td>
                     <td>'.$item["Source"].'</td>
                     <td>
-<<<<<<< HEAD
                       <button type="button" class="btn btn-dark btn-outline-primary edit_data" name="edit" value = "Edit" id="'. $item["Id"] .'">Edit</button>
-                      <button type="button" class="btn btn-light">Delete</button>
-=======
-                      <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
                       <button type="button" class="btn btn-light delete-btn" value="'. $item["Id"] .'">Delete</button>
->>>>>>> 8045f9b031b66ff4f81425be8da1dc83d04e32f7
                     </td>
                   </tr>';
                   $index++;
@@ -189,7 +181,6 @@
 	     	</div>
 	    </div>
     </div>
-<<<<<<< HEAD
 
 <script>
 	$(document).ready(function(){
@@ -217,7 +208,6 @@
 		});
 	});
 </script>
-=======
   </div>
 
   <script>
@@ -267,6 +257,5 @@
       });
     }
   </script>
->>>>>>> 8045f9b031b66ff4f81425be8da1dc83d04e32f7
 </body>
 </html>
