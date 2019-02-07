@@ -4,7 +4,13 @@
 	<title>MercKeyPasser</title>
   <?php
     require './sql/connection.php';
-    session_start(); 
+    session_start();
+
+    if (!isset($_SESSION["Username"])) {
+      echo "Should rediect";
+      header("location: ./index.php");
+      die();
+    }
   ?>
 	<meta charset = "utf-8">
 
@@ -51,12 +57,16 @@
 
     <!-- Main Button Group -->
   	  <div class="col-sm-8">
+<<<<<<< HEAD
         
         <!-- Edit and delete buttons Group >
   	    <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
   	    <button type="button" class="btn btn-light">Delete</button>
 
       	<!-- Button to Open the Modal -->
+=======
+        <!-- Button to Open the Modal -->
+>>>>>>> 8045f9b031b66ff4f81425be8da1dc83d04e32f7
       	<button type="button" class="btn btn-secondary btn-lg" data-toggle="modal" data-target="#myModal">Create</button>
   	  </div>
 
@@ -103,11 +113,16 @@
                     <th>'.$index.'</th>
                     <td>'.$item["Title"].'</td>
                     <td>'.$item["Username"].'</td>
-                    <td>'.$item["Password"].'</td>
+                    <td class="password-field">**********     <button class="btn btn-dark btn-outline-primary show-btn" value="'. $item["Id"] .'">Show</button></td>
                     <td>'.$item["Source"].'</td>
                     <td>
+<<<<<<< HEAD
                       <button type="button" class="btn btn-dark btn-outline-primary edit_data" name="edit" value = "Edit" id="'. $item["Id"] .'">Edit</button>
                       <button type="button" class="btn btn-light">Delete</button>
+=======
+                      <button type="button" class="btn btn-dark btn-outline-primary">Edit</button>
+                      <button type="button" class="btn btn-light delete-btn" value="'. $item["Id"] .'">Delete</button>
+>>>>>>> 8045f9b031b66ff4f81425be8da1dc83d04e32f7
                     </td>
                   </tr>';
                   $index++;
@@ -174,6 +189,7 @@
 	     	</div>
 	    </div>
     </div>
+<<<<<<< HEAD
 
 <script>
 	$(document).ready(function(){
@@ -201,5 +217,56 @@
 		});
 	});
 </script>
+=======
+  </div>
+
+  <script>
+    $(".delete-btn").click(function() {
+      var approved = confirm("Are you sure you want to delete this?");
+      if (approved == true) {
+        var url = './sql/delete.php';
+        var form = $('<form action="' + url + '" method="post">' +
+                     '  <input type="hidden" name="passwordKeyId"  value="' + this.value + '" />' +
+                     '</form>');
+        $('body').append(form);
+        form.submit();
+      }
+    });
+
+    $(document).on('click', '.show-btn', function() {
+      var btn_text = this.innerText;
+      var parrent = this.parentElement;
+      var selectedRow = this.value;
+      var btn = this;
+
+      if (btn_text == "Show") {
+        getPassword(selectedRow, function(password) {
+          btn.innerText = "Hide";
+          var newText = parrent.innerHTML.replace("**********", password);
+          parrent.innerHTML = newText;
+        });
+      } else if (btn_text == "Hide") {
+        getPassword(selectedRow ,function(password) {
+          btn.innerText = "Show";
+          var newText = parrent.innerHTML.replace(password, "**********");
+          parrent.innerHTML = newText;
+        });
+      }
+    });
+
+    function getPassword(selectedRow, callback) {
+      $.ajax({
+        url: "./sql/getPassword.php",
+        type: "get",
+        data: { RowId: selectedRow },
+        dataType: "json",
+        success: function(data) {
+          var value = data.Password;
+          callback(value);
+        }
+      });
+    }
+  </script>
+>>>>>>> 8045f9b031b66ff4f81425be8da1dc83d04e32f7
 </body>
 </html>
