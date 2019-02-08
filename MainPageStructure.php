@@ -176,14 +176,44 @@
 	     	</div>
 	    </div>
     </div>
+    <script>
+      $("#generateBtn").click(
+        function(){
+        var length  = 8; // length of the password
+        //keys for password
+        var keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'; 
+        var password = [];        
+        var keysLength = keyspace.length - 1;
+        
+        // Loop till the length mentioned
+        for(var i = 0; i < length; i++) {                                
+            var rand = Math.floor(Math.random() * keysLength); // Get Randomized number
+            password[i] = keyspace[rand];                // returns part of the keyspace
+        }
+        //join elements of the array into one string
+       password = password.join("");
+       // write it in password field
+       $("#password").val(password);
+      });
+
+    </script>>
 
 <script>
 	$(document).ready(function(){
 
+    $('#myModal').on('hidden.bs.modal', function(){
+      $('#title').val("");
+      $('#username').val("");
+      $('#password').val("");
+      $('#source').val("");
+      $('#recordId').val("");
+      $('#save').text("Create");
+      $('.modal-title').text("Create the record");
+    });
+
     //setting event for the "edit" buttons
 		$(document).on('click', '.edit_data', function(){
 			var recordId = $(this).attr("id");
-			console.log(recordId);
 			$.ajax({
 				url:"/sql/edit.php",
 				method: "POST",
