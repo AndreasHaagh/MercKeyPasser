@@ -255,6 +255,24 @@
         }
       });
     }
+
+    //Runs a function everytime the window is in focus
+    $(window).on("focus", function() {
+      checkForInactivity();
+    });
+
+    //Calls the inactivity file, if it returns "logout" the redirect to the logout file.
+    function checkForInactivity() {
+      $.ajax({
+        url: "./sql/inactivity.php",
+        method: "post",
+        success: function(data) {
+          if (data == "Logout") {
+            window.location.replace("./sql/logout.php");
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>
