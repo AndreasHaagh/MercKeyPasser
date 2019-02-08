@@ -201,10 +201,19 @@
 <script>
 	$(document).ready(function(){
 
+    $('#myModal').on('hidden.bs.modal', function(){
+      $('#title').val("");
+      $('#username').val("");
+      $('#password').val("");
+      $('#source').val("");
+      $('#recordId').val("");
+      $('#save').text("Create");
+      $('.modal-title').text("Create the record");
+    });
+
     //setting event for the "edit" buttons
 		$(document).on('click', '.edit_data', function(){
 			var recordId = $(this).attr("id");
-			console.log(recordId);
 			$.ajax({
 				url:"/sql/edit.php",
 				method: "POST",
