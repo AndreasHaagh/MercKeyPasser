@@ -37,6 +37,18 @@
       margin-top: 25px;
       color: white;
     }
+
+    .jumbotron {
+    margin-bottom: 0px;
+    background-color: #394046;
+    background-image: url(/img/keyP2.jpg);
+    background-size: 100%;
+    background-position: right;
+    background-repeat: no-repeat;
+    color: white;
+    text-shadow: #0000b3 0.2em 0.2em 0.2em;
+}
+
   </style>
 </head>
 <body >
